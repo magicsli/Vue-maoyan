@@ -17,5 +17,18 @@ module.exports = {
             .set('Filters', path.resolve(__dirname, 'src/filters'))
           
         
+    },
+
+    // 反向代理
+    devServer:{
+        proxy: {
+            '/maoyan':{
+                target:'http://m.maoyan.com',
+                changeOrigin:true,
+                pathRewrite: {
+                    '^/maoyan':''
+                }
+            }
+        }
     }
 }

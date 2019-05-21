@@ -1,29 +1,16 @@
-# maoyan
 
-## Project setup
-```
-yarn install
-```
+## 项目介绍:
+    - 此项目以vue全家桶为技术选型, 使用反向代理进行数据获取的SPA
+    - 此项目以百分百还原猫眼电影的移动端界面为目标.
+    
+## 使用技术:
+    - 前端: vue + vue-route + vuex + vue/cli3 + axios
+    - 后台: 使用反向代理向猫眼获取真实数据
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+## 开发人员 
+    - MagicSli ( 此为单人项目 )
 
-### Compiles and minifies for production
-```
-yarn run build
-```
+## 开发一记
+    -  附: 此项目是本人使用vue开发的首个完整项目, 虽然我使用过其他框架( react ),但对于使用vue, 且使用反向代理而不是自己编写后台开发.需要一定的熟悉过程. 若此项目有可以改进优化的地方. 也欢迎各位友人指正
 
-### Run your tests
-```
-yarn run test
-```
-
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+    - 1, movie页面的数据问题, 我初始设计是由Movie组件向vuex交互获取数据,然后在传给Hot 展示公共组件, 但是在进行数据效验时发现, 虽然在父组件中获取数据可以保证公共组件的纯净性, 减少无用代码, 但是由于此页面使用次数不多, 且父子传值,还要进行回调传参, 操作极其麻烦. -- **数据尽量在需要使用的地方进行获取**

@@ -23,6 +23,8 @@ export default {
     color #fff
     font-size .18rem  
     font-family Helvetica Neue,Helvetica,Arial,sans-serif;
+    position relative
+    z-index 20
 
 </style>
 

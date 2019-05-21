@@ -12,15 +12,20 @@ Vue.use( VueRouter )
 const routes = [ 
     { 
         path: '/',
-        redirect:'/movie'
+        redirect:'/movie' 
     },
     {
         path: '/movie',
         component: Movie,
-        childrem:[
+        redirect: '/movie/n-hot',
+        children:[
+            {
+                path: 'n-hot',
+                component: Hot
+            },
             {
                 path: 'f-hot',
-                component:Hot
+                component: Hot
             }
         ]
     },
