@@ -14,53 +14,27 @@
             </div>
         </div>
         
-        <router-view :getNewMovies= "getNewMovies" :state = 'newState || {} '></router-view>
+        <router-view  :state= "state" :state-type='stateType' ></router-view>
     </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
-import {MODIFY_N_HOTS } from 'Store/movie/type.js'
-import { URLSearchParams } from 'url';
+
 export default {
-    data() {
-        return {
-            state:'你好',
-            index: 0,
-            nid: null
-        }
-    },
-    methods: {
-        ...mapActions( ['getNowHot','getNextHot'] ),
-        
-        getNewMovies () {
-            this.index++ ;
-            const from = this.index * 12 >= this.nid.length ? this.nid.length -1 : this.index * 12 ;
-            const to = this.index * 12 + 12 >= this.nid.length ? this.nid.length - 1 : this.index * 12 + 12;
-            if(to - from <= 0) return  
-            console.log(to , from)
-            const movieIds = this.nid.slice( from, to).join()
-            this.getNextHot( 
-                    {
-                        movieIds
-                    }
-                )
-        }
-    },
-    computed: {
-        ...mapGetters(['getNowHots']),
-        newState () {
-          if ( this.$route.path === '/movie/n-hot' ){
-             return this.getNowHots.nHots 
-          }else if(  this.$route.path === '/movie/f-hot' ){
-              return this.getNowHots.fHots
-          }
-        }
-    },
-   async created () {
-     await this.getNowHot();
-     this.nid = this.getNowHots.nHots.movieIds
-    }
+   data () {
+       return {
+           state: this.$router.currentRoute.path,
+           stateType:  this.$route.path === '/movie/n-hot'
+           ? 'movieList' : 'coming'
+       }
+   },
+   
+   beforeRouteUpdate(to, from, next){
+       this.state = to.path
+       this.stateType = to.path === '/movie/n-hot' ? 'movieList' : 'coming' 
+       next()
+   },
+
 }
 </script>
 
@@ -77,7 +51,7 @@ export default {
     .Movie-nav
         display flex
         font-size .15rem
-        line-height .45rem
+        line-height .44rem
         position relative
         z-index 12
         background-color #fff

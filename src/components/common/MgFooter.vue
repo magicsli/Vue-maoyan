@@ -29,7 +29,7 @@
     justify-content space-around
     border-top 1px solid $borderColor
     position relative
-    z-index 10
+    z-index 20
     background-color #fff
     li 
         flex 1
